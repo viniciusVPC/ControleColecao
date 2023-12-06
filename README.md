@@ -3,7 +3,7 @@
 Este projeto está sendo desenvolvido como recreação para facilitar dois principais processos: Organizar minha coleção de Livros, Mangás e HQs e Emprestar e Cobrar os livros da coleção para outras pessoas.
 O sistema será desenvolvido em **Linguagem Java** e contará com acesso à banco de dados à partir do **Sistema MySQL**. As informações serão apresentadas ao usuário através de **JFrames**.  
 ## Pacotes e Classes:
-O projeto se divide em três Pacotes. DTO, DAO e VIEW, cada um com suas classes:
+O projeto se divide em três Pacotes. DTO, DAO e VIEW, cada um com suas classes:  
 ###Pacote DTO
 - LivroDTO:
   - Atributos: Título, Autor, Data de Aquisição.

@@ -1,4 +1,4 @@
-# CRUD de Coleção de Livros
+# 📚📚CRUD de Coleção de Livros📚📚
 ## Sistema criado para auxiliar nas operações de Registro, Controle e Empréstimo de livros de uma coleção.
 Este projeto está sendo desenvolvido como recreação para facilitar dois principais processos: Organizar minha coleção de Livros, Mangás e HQs e Emprestar e Cobrar os livros da coleção para outras pessoas.
 O sistema será desenvolvido em **Linguagem Java** e contará com acesso à banco de dados à partir do **Sistema MySQL**. As informações serão apresentadas ao usuário através de **JFrames**.  

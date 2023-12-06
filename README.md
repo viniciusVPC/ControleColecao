@@ -1,9 +1,17 @@
 # CRUD de Coleção de Livros
 ## Sistema criado para auxiliar nas operações de Registro, Controle e Empréstimo de livros de uma coleção.
-Este projeto está sendo desenvolvido como recração e com o intúito de facilitar a organização da minha coleção de livros, além de
+Este projeto está sendo desenvolvido como recreação para facilitar dois principais processos: Organizar minha coleção de Livros, Mangás e HQs e Emprestar e Cobrar os livros da coleção para outras pessoas.
 O sistema será desenvolvido em **Linguagem Java** e contará com acesso à banco de dados à partir do **Sistema MySQL**. As informações serão apresentadas ao usuário através de **JFrames**.  
-
-
+## Classes:
+As principais classes do sistema se resumem em:
+- Livro:
+  - Atributos: Título, Autor, Data de Aquisição.
+- Pessoa
+  - Atributos: Nome, Telefone para Contato, Cor Favorita.
+- Empréstimo
+  - Atributos: Pessoa, Livro.
+- Controle
+  
 ## O sistema ainda está no início de desenvolvimento, porém contará com as seguintes funcionalidades **(atualizadas conforme o progresso do projeto)**:
 
 ### Livros:
@@ -28,9 +36,9 @@ O sistema será desenvolvido em **Linguagem Java** e contará com acesso à banc
 - [ ] _Tratamento de Excessões_ completas e Validação de _Regras de Negócio_.
 - [ ] _Criação do Banco de Dados_ na máquina.
 - [ ] _Integração_ completa com _MySQL_.
-- [ ] 
+- [ ] Criação de uma _Interface Visual_ intuitiva e atraente para facilitar a experiência do usuário.
 
 ## Funcionalidades extra:
 - [ ] _API_  para facilitar _acesso ao sistema de dispositivos móveis_.
 - [ ] Sistema de _automação de mensagens_ para cobrança dos empréstimos em certos períodos (semana/dias restantes).
-- [ ] 
+- [ ] Criação de um _Executável_ para que o Sistema possa ser utilizado por qualquer um que baixá-lo.

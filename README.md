@@ -2,15 +2,22 @@
 ## Sistema criado para auxiliar nas operações de Registro, Controle e Empréstimo de livros de uma coleção.
 Este projeto está sendo desenvolvido como recreação para facilitar dois principais processos: Organizar minha coleção de Livros, Mangás e HQs e Emprestar e Cobrar os livros da coleção para outras pessoas.
 O sistema será desenvolvido em **Linguagem Java** e contará com acesso à banco de dados à partir do **Sistema MySQL**. As informações serão apresentadas ao usuário através de **JFrames**.  
-## Classes:
-As principais classes do sistema se resumem em:
-- Livro:
+## Pacotes e Classes:
+O projeto se divide em três Pacotes. DTO, DAO e VIEW, cada um com suas classes:
+###Pacote DTO
+- LivroDTO:
   - Atributos: Título, Autor, Data de Aquisição.
-- Pessoa
+- MangaDTO (Herda Livro):
+  - Atributos: Volume.
+- HQDTO (Herda Livro):
+  - Atributos: Série, Volume.
+- PessoaDTO:
   - Atributos: Nome, Telefone para Contato, Cor Favorita.
-- Empréstimo
+- EmpréstimoDTO:
   - Atributos: Pessoa, Livro.
-- Controle
+- ControleColecaoLivrosDTO:
+  - Métodos: AddLivro (adiciona livros à coleção), GetLivro (Retorna um ou mais livros de acordo com diversos filtros. Titulo/Autor/Data de aquisição), RemoveLivro (remove um livro da coleção).
+
   
 ## O sistema ainda está no início de desenvolvimento, porém contará com as seguintes funcionalidades **(atualizadas conforme o progresso do projeto)**:
 

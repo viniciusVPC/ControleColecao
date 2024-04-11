@@ -1,26 +1,29 @@
 package DTO;
 
+import java.time.LocalDate;
+
 public class LivroDTO {
 
     long livroID;
     String titulo, autor;
-    int diaCompra, mesCompra, anoCompra;
+    LocalDate dataCompra;
 
-    public LivroDTO(long livroID, String titulo, String autor, int diaCompra, int mesCompra, int anoCompra) {
+    public LivroDTO() {
+    }
+
+    ;
+    
+    public LivroDTO(long livroID, String titulo, String autor, LocalDate dataCompra) {
         this.livroID = livroID;
         this.titulo = titulo;
         this.autor = autor;
-        this.diaCompra = diaCompra;
-        this.mesCompra = mesCompra;
-        this.anoCompra = anoCompra;
+        this.dataCompra = dataCompra;
     }
 
-    public LivroDTO(String titulo, String autor, int diaCompra, int mesCompra, int anoCompra) {
+    public LivroDTO(String titulo, String autor, LocalDate dataCompra) {
         this.titulo = titulo;
         this.autor = autor;
-        this.diaCompra = diaCompra;
-        this.mesCompra = mesCompra;
-        this.anoCompra = anoCompra;
+        this.dataCompra = dataCompra;
     }
 
     public String getTitulo() {
@@ -39,43 +42,12 @@ public class LivroDTO {
         this.autor = autor;
     }
 
-    public int getDiaCompra() {
-        return diaCompra;
+    public LocalDate getDataCompra() {
+        return dataCompra;
     }
 
-    public void setDiaCompra(int diaCompra) throws ValorNegativoExceptionDTO {
-        if (diaCompra > 0) {
-            this.diaCompra = diaCompra;
-
-        } else {
-            throw new ValorNegativoExceptionDTO();
-        }
-    }
-
-    public int getMesCompra() {
-        return mesCompra;
-    }
-
-    public void setMesCompra(int mesCompra) throws ValorNegativoExceptionDTO {
-        if (mesCompra > 0) {
-            this.mesCompra = mesCompra;
-
-        } else {
-            throw new ValorNegativoExceptionDTO();
-        }
-    }
-
-    public int getAnoCompra() {
-        return anoCompra;
-    }
-
-    public void setAnoCompra(int anoCompra) throws ValorNegativoExceptionDTO {
-        if (anoCompra > 0) {
-            this.anoCompra = anoCompra;
-
-        } else {
-            throw new ValorNegativoExceptionDTO();
-        }
+    public void setDataCompra(LocalDate dataCompra) {
+        this.dataCompra = dataCompra;
     }
 
     public long getLivroID() {
@@ -85,14 +57,12 @@ public class LivroDTO {
     public void setLivroID(long livroID) {
         this.livroID = livroID;
     }
-    
-    
 
     public String toString() {
         return "Informações: "
                 + "\n\tTitulo: " + titulo
                 + "\n\tAutor: " + autor
-                + "\n\tData da compra: " + diaCompra +"/"+mesCompra+"/"+anoCompra;
+                + "\n\tData da compra: " + dataCompra;
     }
 
 }

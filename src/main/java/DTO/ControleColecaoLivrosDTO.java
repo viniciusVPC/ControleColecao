@@ -1,13 +1,19 @@
 package DTO;
 
+import DAO.LivroDAO;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ControleColecaoLivrosDTO {
 
     public ArrayList<LivroDTO> biblioteca = new ArrayList<LivroDTO>();
 
     public void addLivro(LivroDTO livro) {
-        biblioteca.add(livro);
+        //biblioteca.add(livro);
+        LivroDAO livroDAO = new LivroDAO();
+        livroDAO.cadastrarLivro(livro);
     }
 
     public LivroDTO getLivro(LivroDTO livro) {
@@ -51,10 +57,10 @@ public class ControleColecaoLivrosDTO {
         return null;
     }
 
-    public ArrayList<LivroDTO> getLivro(int dia, int mes, int ano) {
+    public ArrayList<LivroDTO> getLivro(LocalDate dataCompra) {
         ArrayList<LivroDTO> livros = new ArrayList<LivroDTO>();
         for (LivroDTO liv : biblioteca) {
-            if (liv.getDiaCompra() == dia && liv.getMesCompra() == mes && liv.getAnoCompra() == ano) {
+            if (liv.getDataCompra() == dataCompra) {
                 livros.add(liv);
             }
         }
@@ -75,8 +81,12 @@ public class ControleColecaoLivrosDTO {
     }
 
     public void displayLivros() {
-        for (LivroDTO livro : biblioteca) {
-            System.out.println(livro.toString());
+        LivroDAO livroDAO = new LivroDAO();
+        System.out.println("teste");
+        try {
+            livroDAO.exibirTudo();
+        } catch (ValorNegativoExceptionDTO ex) {
+            Logger.getLogger(ControleColecaoLivrosDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

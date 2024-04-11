@@ -1,18 +1,22 @@
 package DTO;
 
+import java.time.LocalDate;
+
 public class HQDTO extends LivroDTO {
 
     String serie;
     int volume;
 
-    public HQDTO(long livroID, String titulo, String autor, String serie, int volume, int diaCompra, int mesCompra, int anoCompra) {
-        super(livroID, titulo, autor, diaCompra, mesCompra, anoCompra);
+    public HQDTO(){};
+    
+    public HQDTO(long livroID, String titulo, String autor, String serie, int volume, LocalDate dataCompra) {
+        super(livroID, titulo, autor, dataCompra);
         this.serie = serie;
         this.volume = volume;
     }
 
-    public HQDTO(String titulo, String autor, String serie, int volume, int diaCompra, int mesCompra, int anoCompra) {
-        super(titulo, autor, diaCompra, mesCompra, anoCompra);
+    public HQDTO(String titulo, String autor, String serie, int volume, LocalDate dataCompra) {
+        super(titulo, autor, dataCompra);
         this.serie = serie;
         this.volume = volume;
     }
@@ -44,7 +48,8 @@ public class HQDTO extends LivroDTO {
                 + "\n\tAutor: " + autor
                 + "\n\tSérie: " + serie
                 + "\n\tVolume: " + volume
-                + "\n\tData da compra: " + diaCompra + "/" + mesCompra + "/" + anoCompra;
+                + "\n\tData da compra: " + dataCompra
+                + "\n";
     }
 
 }

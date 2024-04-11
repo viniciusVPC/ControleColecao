@@ -1,6 +1,7 @@
 package VIEW;
 
 import DTO.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,9 +13,9 @@ public class Main {
     int num;
 
     public static void main(String[] args) {
+
         Main main = new Main();
         main.Menu();
-
     }
 
     public void Menu() {
@@ -52,6 +53,7 @@ public class Main {
     public void CriarLivro() {
         String tituloTemp, serieTemp, autorTemp;
         int volumeTemp, diaTemp, mesTemp, anoTemp;
+        LocalDate date;
         System.out.println("--------------------------------");
         System.out.println("O que você quer criar?"
                 + "\n\t[1] Livro"
@@ -74,8 +76,8 @@ public class Main {
                 mesTemp = input.nextInt();
                 System.out.println("Digite o ano em que o livro foi comprado: ");
                 anoTemp = input.nextInt();
-
-                livro = new LivroDTO(tituloTemp, autorTemp, diaTemp, mesTemp, anoTemp);
+                date = LocalDate.of(anoTemp, mesTemp, diaTemp);
+                livro = new LivroDTO(tituloTemp, autorTemp, date);
                 controle.addLivro(livro);
                 break;
 
@@ -97,8 +99,10 @@ public class Main {
                 mesTemp = input.nextInt();
                 System.out.println("Digite o ano em que a HQ foi comprada: ");
                 anoTemp = input.nextInt();
+                date = LocalDate.of(anoTemp, mesTemp, diaTemp);
 
-                livro = new HQDTO(tituloTemp, autorTemp, serieTemp, volumeTemp, diaTemp, mesTemp, anoTemp);
+                livro = new HQDTO(tituloTemp, autorTemp, serieTemp, volumeTemp, date);
+                System.out.println(livro);
                 controle.addLivro(livro);
                 break;
 
@@ -117,8 +121,9 @@ public class Main {
                 mesTemp = input.nextInt();
                 System.out.println("Digite o ano em que o mangá foi comprado: ");
                 anoTemp = input.nextInt();
+                date = LocalDate.of(anoTemp, mesTemp, diaTemp);
 
-                livro = new MangaDTO(tituloTemp, autorTemp, volumeTemp, diaTemp, mesTemp, anoTemp);
+                livro = new MangaDTO(tituloTemp, autorTemp, volumeTemp, date);
                 controle.addLivro(livro);
                 break;
 
@@ -170,7 +175,9 @@ public class Main {
                 mesSearch = input.nextInt();
                 System.out.println("Ano: ");
                 anoSearch = input.nextInt();
-                retorno = controle.getLivro(diaSearch, mesSearch, anoSearch);
+                LocalDate date = LocalDate.of(anoSearch, mesSearch, diaSearch);
+
+                retorno = controle.getLivro(date);
                 retorno.forEach((livro) -> livro.toString());
                 break;
 

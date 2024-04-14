@@ -28,11 +28,48 @@ public class LivroDAO {
             pstm.setString(2, null);
             pstm.setString(3, objLivroDTO.getAutor());
             pstm.setString(4, null);
-            System.out.println(objLivroDTO.getDataCompra());
             pstm.setString(5, String.valueOf(objLivroDTO.getDataCompra()));
             pstm.execute();
             pstm.close();
             JOptionPane.showMessageDialog(null, "Livro cadastrado com sucesso!!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
+        }
+    }
+    
+    public void cadastrarHQ (HQDTO objHQDTO) {
+        co = new ConexaoDAO().conectar();
+
+        try {
+            String sql = "insert into livros (Titulo, Serie, Autor, Volume, DataCompra) values(?,?,?,?,STR_TO_DATE(?,'%Y-%m-%d'))";
+            pstm = co.prepareStatement(sql);
+            pstm.setString(1, objHQDTO.getTitulo());
+            pstm.setString(2, objHQDTO.getSerie());
+            pstm.setString(3, objHQDTO.getAutor());
+            pstm.setInt(4, objHQDTO.getVolume());
+            pstm.setString(5, String.valueOf(objHQDTO.getDataCompra()));
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "HQ cadastrada com sucesso!!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
+        }
+    }
+    
+    public void cadastrarManga (MangaDTO objMangaDTO) {
+        co = new ConexaoDAO().conectar();
+
+        try {
+            String sql = "insert into livros (Titulo, Serie, Autor, Volume, DataCompra) values(?,?,?,?,STR_TO_DATE(?,'%Y-%m-%d'))";
+            pstm = co.prepareStatement(sql);
+            pstm.setString(1, objMangaDTO.getTitulo());
+            pstm.setString(2, null);
+            pstm.setString(3, objMangaDTO.getAutor());
+            pstm.setInt(4, objMangaDTO.getVolume());
+            pstm.setString(5, String.valueOf(objMangaDTO.getDataCompra()));
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Manga cadastrado com sucesso!!!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
         }

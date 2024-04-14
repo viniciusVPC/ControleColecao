@@ -15,6 +15,18 @@ public class ControleColecaoLivrosDTO {
         LivroDAO livroDAO = new LivroDAO();
         livroDAO.cadastrarLivro(livro);
     }
+    
+    public void addManga(MangaDTO manga) {
+        //biblioteca.add(livro);
+        LivroDAO livroDAO = new LivroDAO();
+        livroDAO.cadastrarManga(manga);
+    }
+    
+    public void addHQ(HQDTO hq) {
+        //biblioteca.add(livro);
+        LivroDAO livroDAO = new LivroDAO();
+        livroDAO.cadastrarHQ(hq);
+    }
 
     public LivroDTO getLivro(LivroDTO livro) {
         return biblioteca.get(biblioteca.indexOf(livro));

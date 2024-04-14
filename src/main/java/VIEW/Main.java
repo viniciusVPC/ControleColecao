@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Main {
 
@@ -15,7 +16,32 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
-        main.Menu();
+        InsereLivroVIEW newFrame = new InsereLivroVIEW();
+        newFrame.setVisible(true);
+    }
+
+    public void cadastrarLivro(String titulo, String autor, int dia, int mes, int ano) {
+        System.out.println("Estou cadastrando um livro");
+        LocalDate date = LocalDate.of(ano, mes, dia);
+        LivroDTO livro;
+        livro = new LivroDTO(titulo, autor, date);
+        controle.addLivro(livro);
+    }
+    
+    public void cadastrarHQ(String titulo, String serie, String autor, int volume, int dia, int mes, int ano){
+        System.out.println("Estou cadastrando uma HQ");
+        LocalDate date = LocalDate.of(ano, mes, dia);
+        HQDTO hq;
+        hq = new HQDTO(titulo, autor, serie, volume, date);
+        controle.addHQ(hq);
+    }
+    
+    public void cadastrarManga(String titulo, String autor, int volume, int dia, int mes, int ano){
+        System.out.println("Estou cadastrando um mangá");
+        LocalDate date = LocalDate.of(ano, mes, dia);
+        MangaDTO manga;
+        manga = new MangaDTO(titulo, autor, volume, date);
+        controle.addManga(manga);
     }
 
     public void Menu() {

@@ -14,10 +14,11 @@ public class Main {
     int num;
 
     public static void main(String[] args) {
-
         Main main = new Main();
         GeneralWindowVIEW newFrame = new GeneralWindowVIEW();
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
+        
     }
 
     public void cadastrarLivro(String titulo, String autor, int dia, int mes, int ano) {

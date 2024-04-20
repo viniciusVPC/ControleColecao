@@ -17,7 +17,7 @@ public class ConexaoDAO {
             JOptionPane.showMessageDialog(null, "Conectado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ConexaoDAO: " + ex.getMessage());
-        }
+        } 
         return conexao;
     }
 }

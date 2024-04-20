@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package VIEW;
-
+import DAO.LivroDAO;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class GeneralWindowVIEW extends javax.swing.JFrame {
 
@@ -33,7 +36,7 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        painelAbas = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         JanelaCadastro = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,13 +58,13 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
         HQ = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaLivros = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BotaoMisterioso = new javax.swing.JButton();
+        BotaoCadastrarLivros = new javax.swing.JButton();
+        BotaoExibirColecao = new javax.swing.JButton();
+        BotaoCriarEmprestimo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -187,63 +190,39 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
                     .addGap(0, 97, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Cadastrar", jPanel2);
+        painelAbas.addTab("Cadastrar", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(249, 239, 219));
 
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Título", "Autor", "Data da Compra"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-        }
+        ));
+        tabelaLivros.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabelaLivros);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Listar todos os Livros", jPanel3);
+        painelAbas.addTab("Listar todos os Livros", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -256,7 +235,7 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
             .addGap(0, 871, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Emprestar Livro", jPanel1);
+        painelAbas.addTab("Emprestar Livro", jPanel1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -269,30 +248,45 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
             .addGap(0, 871, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Ver Empréstimos", jPanel4);
+        painelAbas.addTab("Ver Empréstimos", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 0, 840, -1));
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Cadastrar");
+        getContentPane().add(painelAbas, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 0, 840, -1));
+        painelAbas.getAccessibleContext().setAccessibleName("Cadastrar");
 
-        jButton1.setText("jButton1");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 200, 90));
+        BotaoMisterioso.setText("jButton1");
+        BotaoMisterioso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(BotaoMisterioso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 200, 90));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Cadastrar Livros");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 90));
+        BotaoCadastrarLivros.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BotaoCadastrarLivros.setText("Cadastrar Livros");
+        BotaoCadastrarLivros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotaoCadastrarLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastrarLivrosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotaoCadastrarLivros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 90));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setText("Exibir Coleção");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 90));
+        BotaoExibirColecao.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BotaoExibirColecao.setText("Exibir Coleção");
+        BotaoExibirColecao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotaoExibirColecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoExibirColecaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotaoExibirColecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 90));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton4.setText("Criar Empréstimo");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 190, 90));
+        BotaoCriarEmprestimo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        BotaoCriarEmprestimo.setText("Criar Empréstimo");
+        BotaoCriarEmprestimo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotaoCriarEmprestimo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCriarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCriarEmprestimoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotaoCriarEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 190, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -348,6 +342,49 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
         isManga = true;
     }//GEN-LAST:event_MangaActionPerformed
 
+    private DefaultTableModel LimpaTabela(DefaultTableModel tabela){
+        tabela = null;
+        return tabela;
+    }
+    
+    private void BotaoExibirColecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExibirColecaoActionPerformed
+        tabelaLivros.setModel(new DefaultTableModel());
+        painelAbas.setSelectedIndex(1);
+        try{
+        LivroDAO livroDAO = new LivroDAO();
+        ResultSet rs = livroDAO.AcessarTabela();
+        ResultSetMetaData rsmd = rs.getMetaData();
+        DefaultTableModel model = (DefaultTableModel)tabelaLivros.getModel();
+        int cols = rsmd.getColumnCount();
+        String[] colName = new String[cols];
+            for (int i = 0; i < cols; i++)
+                colName[i] = rsmd.getColumnName(i+1);
+            model.setColumnIdentifiers(colName);
+            String id, titulo, serie, autor, volume, dataCompra;
+            while(rs.next()){
+                id = String.valueOf(rs.getString(1));
+                titulo = rs.getString(2);
+                serie = rs.getString(3);
+                autor = rs.getString(4);
+                volume = String.valueOf(rs.getInt(5));
+                dataCompra = String.valueOf(rs.getDate(6));
+                String[] row = {id, titulo, serie, autor, volume, dataCompra};
+                model.addRow(row);
+            }
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro GeneralWindowVIEW: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_BotaoExibirColecaoActionPerformed
+
+    private void BotaoCadastrarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarLivrosActionPerformed
+        painelAbas.setSelectedIndex(0);
+    }//GEN-LAST:event_BotaoCadastrarLivrosActionPerformed
+
+    private void BotaoCriarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCriarEmprestimoActionPerformed
+        painelAbas.setSelectedIndex(2);
+    }//GEN-LAST:event_BotaoCriarEmprestimoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,6 +424,10 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AnoCompra;
     private javax.swing.JTextField AutorLivro;
+    private javax.swing.JButton BotaoCadastrarLivros;
+    private javax.swing.JButton BotaoCriarEmprestimo;
+    private javax.swing.JButton BotaoExibirColecao;
+    private javax.swing.JButton BotaoMisterioso;
     private javax.swing.JButton Cadastrar;
     private javax.swing.JTextField DiaCompra;
     private javax.swing.JButton HQ;
@@ -397,10 +438,6 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
     private javax.swing.JTextField SerieHQ;
     private javax.swing.JTextField TituloLivro;
     private javax.swing.JTextField VolumeHQManga;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
@@ -412,7 +449,7 @@ public class GeneralWindowVIEW extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane painelAbas;
+    private javax.swing.JTable tabelaLivros;
     // End of variables declaration//GEN-END:variables
 }

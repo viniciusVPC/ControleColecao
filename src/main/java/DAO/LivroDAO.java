@@ -1,4 +1,5 @@
 package DAO;
+
 import DTO.HQDTO;
 import DTO.LivroDTO;
 import DTO.MangaDTO;
@@ -36,8 +37,8 @@ public class LivroDAO {
             JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
         }
     }
-    
-    public void cadastrarHQ (HQDTO objHQDTO) {
+
+    public void cadastrarHQ(HQDTO objHQDTO) {
         co = new ConexaoDAO().conectar();
 
         try {
@@ -55,8 +56,8 @@ public class LivroDAO {
             JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
         }
     }
-    
-    public void cadastrarManga (MangaDTO objMangaDTO) {
+
+    public void cadastrarManga(MangaDTO objMangaDTO) {
         co = new ConexaoDAO().conectar();
 
         try {
@@ -72,6 +73,19 @@ public class LivroDAO {
             JOptionPane.showMessageDialog(null, "Manga cadastrado com sucesso!!!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
+        }
+    }
+
+    public ResultSet AcessarTabela() {
+        co = new ConexaoDAO().conectar();
+        try {
+            String sql = "select * from livros";
+            pstm = co.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            return rs;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
+            return null;
         }
     }
 
@@ -113,7 +127,6 @@ public class LivroDAO {
 //            JOptionPane.showMessageDialog(null, "Erro LivroDAO: " + ex.getMessage());
 //        }
 //    }
-
     public void exibirTudo() throws ValorNegativoExceptionDTO {
         ArrayList<HQDTO> lista = new ArrayList<HQDTO>();
         try {
